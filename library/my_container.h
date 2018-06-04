@@ -11,24 +11,24 @@ protected:
 
 public:
 
-	//проверка на пустоту
+	//РїСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
 	bool is_empty()
 	{
 		return c.empty();
 	}
-	//количество элементов
+	//РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
 	int size()
 	{
 		return c.size();
 	}
 
-	//добавление в контейнер
+	//РґРѕР±Р°РІР»РµРЅРёРµ РІ РєРѕРЅС‚РµР№РЅРµСЂ
 	void push(Type el)
 	{
 		c.push_back(el);
 	}
 	
-	//удаление элемента контейнера
+	//СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РєРѕРЅС‚РµР№РЅРµСЂР°
 	bool remove(int i)
 	{
 		if ((i >= c.size()) || (i < 0))
@@ -39,7 +39,7 @@ public:
 		return true;
 	}
 
-	//изменение элемента
+	//РёР·РјРµРЅРµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	bool edit(int i, Type el)
 	{
 		if ((i >= c.size()) || (i < 0))
@@ -50,12 +50,12 @@ public:
 		return true;
 	}
 	
-	//ввод контейнера из файла
+	//РІРІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР° РёР· С„Р°Р№Р»Р°
 	bool input_file(string name)
 	{
 		Type el;
 		ifstream infile(name);
-		string str; //для разделителя
+		string str; //РґР»СЏ СЂР°Р·РґРµР»РёС‚РµР»СЏ
 		c.clear();
 		bool ok;
 		if (!infile)
@@ -68,7 +68,7 @@ public:
 			while ( (infile >> el) && ok )
 			{
 				c.push_back(el);
-				getline(infile, str); //считываем разделитель
+				getline(infile, str); //СЃС‡РёС‚С‹РІР°РµРј СЂР°Р·РґРµР»РёС‚РµР»СЊ
 				ok = (str == "");
 			}
 			infile.close();
@@ -80,7 +80,7 @@ public:
 		return ok;  
 	}
 
-	//ввод контейнера с клавиатуры
+	//РІРІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР° СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 	void input_screen()
 	{
 		istream_iterator<Type> is(cin);
@@ -91,14 +91,14 @@ public:
 			input = *is;
 			c.push_back(input);
 			cin.ignore(10, '\n');
-			cout << "Добавить еще элемент? (да - y/ нет - любая клавиша)" << endl;
+			cout << "Р”РѕР±Р°РІРёС‚СЊ РµС‰Рµ СЌР»РµРјРµРЅС‚? (РґР° - y/ РЅРµС‚ - Р»СЋР±Р°СЏ РєР»Р°РІРёС€Р°)" << endl;
 			cin >> ans;
 			if ((ans == 'y') || (ans == 'Y'))
 				is++;
 		} while ((ans == 'y') || (ans == 'Y'));
 	}
 
-	//вывод контейнера в файл
+	//РІС‹РІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР° РІ С„Р°Р№Р»
 	bool output_file(string name)
 	{
 		ofstream outfile(name);
@@ -113,7 +113,7 @@ public:
 		}
 	}
 
-	//вывод контейнера на экран
+	//РІС‹РІРѕРґ РєРѕРЅС‚РµР№РЅРµСЂР° РЅР° СЌРєСЂР°РЅ
 	void output_screen()
 	{
 		if (c.size() > 0)
@@ -121,31 +121,31 @@ public:
 			int i = 0;
 			for (vector<Type>::const_iterator iter = c.begin(); iter != c.end(); ++iter)
 			{
-				cout << "Запись " << i++ << "." << endl;
+				cout << "Р—Р°РїРёСЃСЊ " << i++ << "." << endl;
 				cout << *iter << endl;
 			}
 			//copy(c.begin(), c.end(), ostream_iterator<Type>(cout, "\n"));
 		}
 		else
 		{
-			cout << "Контейнер пуст." << endl;
+			cout << "РљРѕРЅС‚РµР№РЅРµСЂ РїСѓСЃС‚." << endl;
 		}
 	}
 
-	//печать элемента по индексу
+	//РїРµС‡Р°С‚СЊ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 	bool print(int i)
 	{
 		if ((i >= c.size()) || (i < 0))
 		{
 			return false;
 		}
-		cout << "Запись " << i << "." << endl;
+		cout << "Р—Р°РїРёСЃСЊ " << i << "." << endl;
 		cout << c[i] << endl;
 		return true;
 	}
 
-	/*бинарный поиск
-	(функция соответствия элемента критерию, TSearch - тип критерия)*/
+	/*Р±РёРЅР°СЂРЅС‹Р№ РїРѕРёСЃРє
+	(С„СѓРЅРєС†РёСЏ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёСЏ СЌР»РµРјРµРЅС‚Р° РєСЂРёС‚РµСЂРёСЋ, TSearch - С‚РёРї РєСЂРёС‚РµСЂРёСЏ)*/
 	template <class TSearch>
 	my_container<Type> search(int(*equal)(Type el, TSearch search), TSearch sear)
 	{
@@ -160,8 +160,8 @@ public:
 		return find;
 	}
 	
-	/*бинарный поиск
-	(функция соответствия элемента критерию, TSearch - тип критерия, функция для сортировки по критерию)*/
+	/*Р±РёРЅР°СЂРЅС‹Р№ РїРѕРёСЃРє
+	(С„СѓРЅРєС†РёСЏ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёСЏ СЌР»РµРјРµРЅС‚Р° РєСЂРёС‚РµСЂРёСЋ, TSearch - С‚РёРї РєСЂРёС‚РµСЂРёСЏ, С„СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ РєСЂРёС‚РµСЂРёСЋ)*/
 	template <class TSearch>
 	my_container<Type> bin_search(int(*equal)(Type el, TSearch search), TSearch sear, 
 									bool(*compare)(Type el1, Type el2))
@@ -177,13 +177,13 @@ public:
 		{
 			mid = ((left + right) / 2);
 			n = (*equal)(c[mid], sear);
-			if (n == 1)        //(c[mid] > element с sear)
+			if (n == 1)        //(c[mid] > element СЃ sear)
 			{
 				right = mid - 1;
 			}
 			else
 			{
-				if (n == -1)   //(element с sear < c[mid])
+				if (n == -1)   //(element СЃ sear < c[mid])
 				{
 					left = mid + 1;
 				}
@@ -197,13 +197,13 @@ public:
 		my_container<Type> res;
 		if (find)
 		{
-			//идем вправо
+			//РёРґРµРј РІРїСЂР°РІРѕ
 			for (int i = mid; (i < c.size()) && ((*equal)(c[i], sear) == 0); ++i)
 			{
 				res.push(c[i]);
 			}
 			mid--;
-			//идем влево
+			//РёРґРµРј РІР»РµРІРѕ
 			for (int i = mid; (i >= 0) && ((*equal)(c[mid], sear) == 0); --i)
 			{
 				res.push(c[i]);
